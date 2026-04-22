@@ -1,0 +1,10 @@
+Flask
+Flask-Login
+Flask-Mail
+Flask-Migrate
+Flask-SQLAlchemy
+SQLAlchemy
+mysql-connector-python
+PyMySQL
+Werkzeug
+alembic

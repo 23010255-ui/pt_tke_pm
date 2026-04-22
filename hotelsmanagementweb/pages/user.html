@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <title>HaNoiBooking.</title>
+    <link rel="stylesheet" type="text/css" href="../css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .booking-list-outer {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            height: 93%;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .booking-list {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+            width: max-content;
+            min-height: 80%;
+            height: 100%;
+            align-items: flex-start;
+            padding: 0 0 24px 0;
+            margin: 0;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        .booking-list::-webkit-scrollbar {
+            height: 12px;
+            background: #f1f1f1;
+        }
+
+        .booking-list-outer::-webkit-scrollbar {
+            height: 12px;
+            background: #f1f1f1;
+        }
+
+        .booking-list-outer::-webkit-scrollbar-thumb {
+            background: #bbb;
+            border-radius: 8px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            width: 350px;
+            min-width: 350px;
+            overflow: hidden;
+            height: 104%;
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .card__img {
+            position: relative;
+            height: 60%px;
+            min-height: 180px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card__img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #FFC107;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            z-index: 2;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card__info {
+            flex: 1 1 auto;
+            min-height: 180px;
+            max-height: none;
+            overflow-y: visible;
+            padding: 8px 10px 8px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-end;
+            font-size: 13px;
+            color: #222;
+            background: #fff;
+            border-top: 1px solid #f0f0f0;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            text-align: left;
+            gap: 2px;
+        }
+
+        .card__info>div {
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .card__info .date {
+            font-weight: 700;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 4px;
+            padding-bottom: 2px;
+            font-size: 14px;
+            color: #1a237e;
+            width: 100%;
+            text-align: left;
+        }
+
+        .card__info .day {
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 4px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card__info .location {
+            font-size: 14px;
+            color: #222;
+            font-weight: 600;
+            margin-bottom: 4px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card__info .room-type {
+            font-size: 15px;
+            color: #1976d2;
+            font-weight: 600;
+            margin-bottom: 8px;
+            margin-top: 2px;
+            width: 100%;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .card__info .address {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 4px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card__info .total-price {
+            color: #ff5722;
+            font-weight: bold;
+            margin-top: 6px;
+            font-size: 15px;
+            width: 100%;
+            text-align: left;
+            letter-spacing: 0.5px;
+        }
+
+        .card__info .status-badge {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            background: #bdbdbd;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .card__info .status-success {
+            background: #43a047;
+        }
+
+        .card__info .status-pending {
+            background: #ffc107;
+            color: #222;
+        }
+
+        .card__info .status-failed {
+            background: #e53935;
+        }
+
+        .customer-contact {
+            margin-bottom: 4px;
+            line-height: 1.2;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .customer-contact>span {
+            margin-bottom: 1px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .customer-contact {
+                font-size: 12px;
+                padding: 4px 2px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .booking-list {
+                gap: 16px;
+            }
+
+            .card {
+                width: 340px;
+                min-width: 340px;
+                height: 520px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .booking-list {
+                gap: 12px;
+            }
+
+            .card {
+                width: 320px;
+                min-width: 320px;
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .booking-list {
+                gap: 16px;
+            }
+
+            .card {
+                width: 300px;
+                min-width: 300px;
+                height: 480px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .booking-list {
+                gap: 12px;
+            }
+
+            .card {
+                width: 280px;
+                min-width: 280px;
+                height: 440px;
+            }
+        }
+
+        .change-password-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .change-password-section h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .password-form {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .password-form .form-group {
+            margin-bottom: 15px;
+            flex: 0 0 calc(50% - 10px);
+            max-width: calc(50% - 10px);
+        }
+
+        .password-form .form-group:last-child {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .password-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .password-form input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .password-form input:focus {
+            border-color: #1976d2;
+            outline: none;
+        }
+
+        .change-password-btn {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .change-password-btn:hover {
+            background-color: #1565c0;
+        }
+
+        .change-password-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 480px) {
+            .password-form .form-group {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .password-form {
+                padding: 0 20px;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+        }
+
+        .notification.warning {
+            background-color: #ff9800;
+        }
+
+        .notification.info {
+            background-color: #2196F3;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification-content i {
+            font-size: 20px;
+        }
+
+        .transactions-list-outer {
+            max-height: 90%;
+            overflow-y: auto;
+            margin-bottom: 16px;
+        }
+
+        .help-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .help-popup-content {
+            background: #fff;
+            border-radius: 12px;
+            padding: 32px 28px 24px 28px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+
+        .help-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .help-popup-content h2 {
+            margin-top: 0;
+            color: #1976d2;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+
+        .help-popup-content ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        .help-popup-content li {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu">
+            <a href="{{ url_for('home') }}" class="logo" style="text-decoration: none;">
+                <span class="logo-light">HaNoi</span><span class="logo-bold">Booking.</span>
+            </a>
+            <div class="menu__func">
+                <!-- Menu cho Customer -->
+                <div class="func1 active" onclick="switchSection('bookings')" data-role="customer">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <p class="func-title">Bookings</p>
+                </div>
+                <div class="func2" onclick="switchSection('transactions')" data-role="customer">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <p class="func-title">Transactions</p>
+                </div>
+                <div class="func3" onclick="switchSection('account')" data-role="customer">
+                    <i class="fa-solid fa-id-badge"></i>
+                    <p class="func-title">Account</p>
+                </div>
+                <div class="func4" data-role="customer" onclick="openHelpPopup()">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <p class="func-title">Help</p>
+                </div>
+                <div class="func5" data-role="customer">
+                    <i class="fa-solid fa-message"></i>
+                    <p class="func-title">Messages</p>
+                </div>
+
+                <!-- Menu cho Owner -->
+                <div class="func1" onclick="switchSection('booking-history')" data-role="owner">
+                    <i class="fa-solid fa-history"></i>
+                    <p class="func-title">Booking History</p>
+                </div>
+                <div class="func2" onclick="switchSection('room-management')" data-role="owner">
+                    <i class="fa-solid fa-bed"></i>
+                    <p class="func-title">Room Management</p>
+                </div>
+                <div class="func3" onclick="switchSection('dashboard')" data-role="owner">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <p class="func-title">Dashboard</p>
+                </div>
+                <div class="func4" onclick="switchSection('hotel-rooms')" data-role="owner">
+                    <i class="fa-solid fa-hotel"></i>
+                    <p class="func-title">Payment History</p>
+                </div>
+                <div class="func5" onclick="switchSection('account')" data-role="owner">
+                    <i class="fa-solid fa-id-badge"></i>
+                    <p class="func-title">Account</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="header">
+                <div class="hello__user">
+                    <h1 class="hello-user">Hello, <span id="userFullName"></span></h1>
+                    <p class="hello-title">Have a nice day</p>
+                </div>
+
+                <div class="login">
+                    <div class="noti-wrapper" onclick="toggleNoti()">
+                        <div class="icon">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="dot has-noti"></span>
+                        </div>
+                        <div class="noti-tab" id="notiTab">
+                            <div class="noti-header">
+                                <h3>Notifications</h3>
+                                <span class="noti-count">1</span>
+                            </div>
+                            <div class="noti-list">
+                                <!-- Notifications will be loaded here by JavaScript -->
+                            </div>
+                            <div class="noti-footer">
+                                <a href="#">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vector"></div>
+
+                    <div class="user-box" onclick="toggleDropdown()">
+                        <div class="avatar">
+                            <img src="https://ui-avatars.com/api/?name={{ current_user.full_name or current_user.username }}&background=random"
+                                alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name"></div>
+                            <div class="user-role"></div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                        <div class="dropdown" id="userDropdown">
+                            <!-- <a href="#"><i class="fa-regular fa-calendar-check"></i>My Booking</a> -->
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ url_for('logout') }}" class="logout"><i
+                                    class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings Section -->
+            <div id="bookings" class="content-section active">
+                <h2 class="list-title">Booking List</h2>
+                <div class="booking-list-outer">
+                    <div class="booking-list">
+                        {% if bookings and bookings|length > 0 %}
+                        {% for booking in bookings %}
+                        <div class="card" data-booking-id="{{ booking.booking_id }}">
+                            <div class="card__img">
+                                <div class="status-badge status-{{ booking.status|lower }}">
+                                    {% if booking.status == 'success' %}
+                                    Success
+                                    {% elif booking.status == 'pending' %}
+                                    Pending
+                                    {% elif booking.status == 'failed' %}
+                                    Failed
+                                    {% else %}
+                                    {{ booking.status|capitalize }}
+                                    {% endif %}
+                                </div>
+                                <img src="{{ booking.image_url or '/assets/image/default-room.webp' }}"
+                                    alt="Room Image">
+                            </div>
+                            <div class="card__info">
+                                <div class="date"><b>{{ booking.check_in }} - {{ booking.check_out }}</b></div>
+                                <div class="day">{{ (booking.check_out - booking.check_in).days if booking.check_in and
+                                    booking.check_out else '' }} Day(s)</div>
+                                <div class="location">{{ booking.hotel_name if booking.hotel_name else '' }}</div>
+                                <div class="room-type">{{ booking.room_type if booking.room_type else '' }}</div>
+                                <div class="address">{{ booking.hotel_address if booking.hotel_address else '' }}</div>
+                                <div class="customer-contact">
+                                    <span>Phone: {{ current_user.phone }}</span><br>
+                                    <span>Email: {{ current_user.email }}</span>
+                                </div>
+                                <div class="total-price">Total: {{ booking.total_price|format_price if
+                                    booking.total_price
+                                    else '0₫' }}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="no-bookings">You have no bookings yet</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transactions Section -->
+            <div id="transactions" class="content-section">
+                <h2 class="list-title">Transaction History</h2>
+                <div class="transactions-list-outer">
+                    <div class="transactions-list">
+                        {% if transactions and transactions|length > 0 %}
+                        {% for t in transactions %}
+                        <div class="transaction-card">
+                            <div class="transaction-header">
+                                <div class="transaction-date">{{ t.created_at.strftime('%Y-%m-%d') if t.created_at else
+                                    ''
+                                    }}</div>
+                                <div class="transaction-id">#{{ t.txn_ref or t.payment_id }}</div>
+                            </div>
+                            <div class="transaction-amount">{{ t.amount }} VND</div>
+                            <div class="transaction-info">
+                                <div class="transaction-hotel">{{ t.booking.hotel.hotel_name if t.booking and
+                                    t.booking.hotel else '' }}</div>
+                                <div class="transaction-nights">{{ (t.booking.check_out - t.booking.check_in).days if
+                                    t.booking and t.booking.check_in and t.booking.check_out else 1 }} nights</div>
+                            </div>
+                            <span class="transaction-status status-{{ t.payment_status|lower }}">
+                                {{ t.payment_status|capitalize }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="no-transactions">No transactions found</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Section -->
+            <div id="account" class="content-section">
+                <h2 class="list-title">Account Settings</h2>
+                <div class="account-section">
+                    <form class="account-form">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="input-fullname" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="example@email.com" />
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" value="+84 123 456 789" />
+                        </div>
+                        <button type="button" class="save-btn">Save Changes</button>
+                    </form>
+
+                    <div class="change-password-section">
+                        <h3>Change Password</h3>
+                        <form class="password-form">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" class="current-password" required />
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" class="new-password" required minlength="6" />
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" class="confirm-password" required minlength="6" />
+                            </div>
+                            <button type="button" class="change-password-btn">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking History Section -->
+            <div id="booking-history" class="content-section">
+                <h2 class="list-title">Booking History</h2>
+                <div class="booking-list-outer">
+                    <div class="booking-list booking-history-list">
+                        <!-- Content will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room Management Section -->
+            <div id="room-management" class="content-section">
+                <h2 class="list-title">Room Management</h2>
+                <div class="booking-list-outer">
+                    <div class="booking-list room-list">
+                        <!-- Room list will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="content-section">
+                <h2 class="list-title">Dashboard</h2>
+                <div id="ownerHotelList" style="margin-bottom: 20px;"></div>
+                <div class="dashboard-content">
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <i class="fa-solid fa-hotel"></i>
+                            <div class="stat-info">
+                                <h3>Total Hotels</h3>
+                                <p id="totalHotels">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-bed"></i>
+                            <div class="stat-info">
+                                <h3>Total Rooms</h3>
+                                <p id="totalRooms">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-calendar-day"></i>
+                            <div class="stat-info">
+                                <h3>Today's Bookings</h3>
+                                <p id="todayBookings">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <div class="stat-info">
+                                <h3>Total Bookings</h3>
+                                <p id="totalBookings">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                            <div class="stat-info">
+                                <h3>Total Revenue</h3>
+                                <p id="totalRevenue">0₫</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-coins"></i>
+                            <div class="stat-info">
+                                <h3>Day Revenue</h3>
+                                <p id="monthlyRevenue">0₫</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="charts-container" style="display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap;">
+                        <div class="chart-wrapper" style="flex: 1; min-width: 320px;">
+                            <h3>Revenue by Day</h3>
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                        <div class="chart-wrapper" style="flex: 1; min-width: 320px;">
+                            <h3>Bookings by Day</h3>
+                            <canvas id="bookingsChart"></canvas>
+                        </div>
+                        <div class="chart-wrapper" style="flex: 1; min-width: 320px;">
+                            <h3>Booking Status Rate</h3>
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Rooms Section -->
+            <div id="hotel-rooms" class="content-section">
+                <h2 class="list-title">Payment History</h2>
+                <div id="paymentHistoryHotelList" style="margin-bottom: 20px;"></div>
+                <div class="payment-history-content">
+                    <div id="paymentHistoryTableWrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Popup -->
+    <div id="helpPopup" class="help-popup" style="display:none;">
+        <div class="help-popup-content">
+            <span class="help-close" onclick="closeHelpPopup()">&times;</span>
+            <h2>Help & Support</h2>
+            <ul>
+                <li><b>How to book a room?</b><br>Go to the hotel, select a room, choose your dates, and click "Book
+                    Now".</li>
+                <li><b>How to view my bookings?</b><br>Click on the "Bookings" menu to see your booking history.</li>
+                <li><b>How to contact support?</b><br>Email: <a
+                        href="mailto:support@hanoibooking.com">support@hanoibooking.com</a> or call: 0123-456-789.</li>
+                <li><b>How to change my password?</b><br>Go to "Account" &rarr; "Change Password".</li>
+            </ul>
+            <p style="margin-top:16px;">If you need further assistance, please contact our support team.</p>
+        </div>
+    </div>
+
+    <script>
+        // Hàm chuyển đổi tab
+        function switchSection(sectionId) {
+            // Ẩn tất cả các section
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Bỏ active class từ tất cả các menu item
+            document.querySelectorAll('.menu__func > div').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Hiển thị section được chọn
+            document.getElementById(sectionId).style.display = 'block';
+
+            // Xác định role hiện tại dựa trên menu đang hiển thị
+            let currentRole = 'customer';
+            const visibleMenu = Array.from(document.querySelectorAll('.menu__func > div')).find(item => item.style.display !== 'none');
+            if (visibleMenu && visibleMenu.getAttribute('data-role') === 'owner') {
+                currentRole = 'owner';
+            }
+
+            // Thêm active class cho menu item được chọn
+            let activeClass = '';
+            if (currentRole === 'customer') {
+                switch (sectionId) {
+                    case 'bookings':
+                        activeClass = 'func1';
+                        break;
+                    case 'transactions':
+                        activeClass = 'func2';
+                        break;
+                    case 'account':
+                        activeClass = 'func3';
+                        break;
+                    case 'help':
+                        activeClass = 'func4';
+                        break;
+                    case 'message':
+                        activeClass = 'func5';
+                        break;
+                }
+            } else if (currentRole === 'owner') {
+                switch (sectionId) {
+                    case 'booking-history':
+                        activeClass = 'func1';
+                        loadOwnerBookingHistory();
+                        break;
+                    case 'room-management':
+                        activeClass = 'func2';
+                        loadOwnerRoomTypes();
+                        break;
+                    case 'dashboard':
+                        activeClass = 'func3';
+                        loadOwnerDashboardStats();
+                        break;
+                    case 'hotel-rooms':
+                        activeClass = 'func4';
+                        break;
+                    case 'account':
+                        activeClass = 'func5';
+                        break;
+                }
+            }
+            if (activeClass) {
+                // Chỉ set active cho menu đang hiển thị
+                const menuItem = Array.from(document.querySelectorAll('.menu__func > div'))
+                    .find(item => item.classList.contains(activeClass) && item.style.display !== 'none');
+                if (menuItem) menuItem.classList.add('active');
+            }
+        }
+
+        // Hàm xử lý thông báo
+        function toggleNoti() {
+            const notiTab = document.getElementById('notiTab');
+            const userDropdown = document.getElementById('userDropdown');
+
+            // Ẩn dropdown user nếu đang mở
+            if (userDropdown.classList.contains('active')) {
+                userDropdown.classList.remove('active');
+            }
+
+            // Toggle hiển thị thông báo
+            if (notiTab.style.display === 'block') {
+                notiTab.style.display = 'none';
+            } else {
+                notiTab.style.display = 'block';
+            }
+        }
+
+        // Hàm xử lý dropdown user
+        function toggleDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            const notiTab = document.getElementById('notiTab');
+
+            // Ẩn thông báo nếu đang mở
+            if (notiTab.style.display === 'block') {
+                notiTab.style.display = 'none';
+            }
+
+            // Toggle hiển thị dropdown
+            dropdown.classList.toggle('active');
+        }
+
+        // Đóng dropdown khi click ra ngoài
+        window.onclick = function (event) {
+            const userBox = document.querySelector('.user-box');
+            const notiWrapper = document.querySelector('.noti-wrapper');
+            const dropdown = document.getElementById('userDropdown');
+            const notiTab = document.getElementById('notiTab');
+
+            if (!userBox.contains(event.target) && !notiWrapper.contains(event.target)) {
+                dropdown.classList.remove('active');
+                notiTab.style.display = 'none';
+            }
+        }
+
+        // Hàm xử lý chỉnh sửa booking
+        function editBooking(id) {
+            // Chuyển hướng đến trang chỉnh sửa booking
+            window.location.href = `/booking/${id}/edit`;
+        }
+
+        // Hàm xử lý xóa booking
+        function deleteBooking(id) {
+            if (confirm('Bạn có chắc chắn muốn hủy đặt phòng này?')) {
+                // Gọi API để xóa booking
+                fetch(`/booking/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Xóa card booking khỏi giao diện
+                            const bookingCard = document.querySelector(`[data-booking-id="${id}"]`);
+                            if (bookingCard) {
+                                bookingCard.remove();
+                            }
+                            alert('Hủy đặt phòng thành công!');
+                        } else {
+                            alert('Có lỗi xảy ra khi hủy đặt phòng!');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi hủy đặt phòng!');
+                    });
+            }
+        }
+
+        // Hàm xử lý hiển thị chi tiết giao dịch
+        function toggleTransactionDetails(card) {
+            const details = card.querySelector('.transaction-details');
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+            } else {
+                details.style.display = 'block';
+            }
+        }
+
+        // Hàm lấy thông tin user từ session
+        function loadUserInfo() {
+            fetch('/api/user/info')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Cập nhật thông tin user trong header
+                    const userFullName = document.getElementById('userFullName');
+                    if (userFullName) userFullName.textContent = data.full_name || data.username || 'User';
+
+                    const userName = document.querySelector('.user-name');
+                    const userRole = document.querySelector('.user-role');
+                    if (userName) {
+                        userName.textContent = data.full_name || data.username;
+                    }
+                    if (userRole) {
+                        userRole.textContent = data.role || 'User';
+                    }
+
+                    // Cập nhật thông tin trong form account
+                    if (document.querySelector('.account-form')) {
+                        document.querySelector('.account-form .input-fullname').value = data.full_name || '';
+                        document.querySelector('.account-form input[type="email"]').value = data.email || '';
+                        document.querySelector('.account-form input[type="tel"]').value = data.phone || '';
+                    }
+
+                    // Ẩn/hiện menu theo role và tự động mở tab đầu tiên
+                    const role = data.role;
+                    const allMenuItems = document.querySelectorAll('.menu__func > div');
+                    allMenuItems.forEach(item => {
+                        const itemRole = item.getAttribute('data-role');
+                        item.style.display = (itemRole === role) ? 'flex' : 'none';
+                    });
+                    // Tự động mở tab đầu tiên của role
+                    if (role === 'owner') {
+                        switchSection('booking-history');
+                    } else {
+                        switchSection('bookings');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading user info:', error);
+                    // Hiển thị lỗi nhẹ nhàng trên UI, không alert
+                    const userFullName = document.getElementById('userFullName');
+                    if (userFullName) userFullName.textContent = 'Error loading user info!';
+                });
+        }
+
+        // Hàm lấy danh sách booking
+        function loadBookings() {
+            fetch('/api/user/bookings')
+                .then(response => response.json())
+                .then(data => {
+                    const bookingList = document.querySelector('.booking-list');
+                    bookingList.innerHTML = ''; // Xóa danh sách cũ
+
+                    if (data.bookings && data.bookings.length > 0) {
+                        data.bookings.forEach(booking => {
+                            const bookingCard = createBookingCard(booking);
+                            bookingList.appendChild(bookingCard);
+                        });
+                    } else {
+                        bookingList.innerHTML = '<div class="no-bookings">Bạn chưa có đặt phòng nào</div>';
+                    }
+                })
+                .catch(error => console.error('Error loading bookings:', error));
+        }
+
+        // Hàm tạo card booking
+        function createBookingCard(booking) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.bookingId = booking.id;
+
+            const days = calculateDays(booking.check_in, booking.check_out);
+
+            // Định nghĩa status badge class
+            let statusClass = '';
+            let statusText = '';
+            switch (booking.status) {
+                case 'confirmed':
+                    statusClass = 'confirmed';
+                    statusText = 'Confirmed';
+                    break;
+                case 'pending':
+                    statusClass = 'pending';
+                    statusText = 'Pending';
+                    break;
+                case 'failed':
+                    statusClass = 'failed';
+                    statusText = 'Failed';
+                    break;
+                case 'success':
+                    statusClass = 'success';
+                    statusText = 'Success';
+                    break;
+                default:
+                    statusClass = '';
+                    statusText = booking.status || 'Pending';
+            }
+
+            // Xác định trạng thái thanh toán
+            let paymentStatusClass = booking.payment_status ? 'status-' + booking.payment_status.toLowerCase() : '';
+            let paymentStatusText = booking.payment_status ? booking.payment_status.charAt(0).toUpperCase() + booking.payment_status.slice(1) : 'N/A';
+
+            // Nút xóa và thanh toán tiếp cho pending/failed
+            let actionBtns = '';
+            if (booking.status === 'pending' || booking.status === 'failed') {
+                actionBtns = `
+                    <div class="card__actions card__actions-img">
+                        <button class="delete-btn" title="Delete booking" onclick="deleteBooking(${booking.id})"><i class="fa fa-trash"></i></button>
+                        <button class="pay-btn" title="Continue payment" onclick="continuePayment(${booking.id})"><i class="fa fa-credit-card"></i></button>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="card__img">
+                    <div class="payment-status ${paymentStatusClass}">Payment: ${paymentStatusText}</div>
+                    ${actionBtns}
+                    <img src="${booking.image_url || '/assets/image/default-room.webp'}" alt="Room Image">
+                </div>
+                <div class="card__info">
+                    <div class="date"><b>${booking.check_in} - ${booking.check_out}</b></div>
+                    <div class="day">${days} Day(s)</div>
+                    <div class="location">${booking.hotel_name || ''}</div>
+                    <div class="room-type">${booking.room_type || ''}</div>
+                    <div class="address">${booking.hotel_address || ''}</div>
+                    <div class="total-price">Total: ${formatPrice(booking.total_price)}</div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Hàm format ngày tháng
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'short'
+            });
+        }
+
+        // Hàm tính số ngày
+        function calculateDays(checkIn, checkOut) {
+            const start = new Date(checkIn);
+            const end = new Date(checkOut);
+            const diffTime = Math.abs(end - start);
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
+
+        // Hàm format giá tiền
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(price);
+        }
+
+        // Hàm lấy class CSS cho trạng thái booking
+        function getStatusClass(status) {
+            switch (status) {
+                case 'confirmed': return 'status-confirmed';
+                case 'pending': return 'status-pending';
+                case 'cancelled': return 'status-cancelled';
+                case 'completed': return 'status-completed';
+                default: return '';
+            }
+        }
+
+        // Hàm lấy text hiển thị cho trạng thái booking
+        function getStatusText(status) {
+            switch (status) {
+                case 'confirmed': return 'Đã xác nhận';
+                case 'pending': return 'Đang chờ xác nhận';
+                case 'cancelled': return 'Đã hủy';
+                case 'completed': return 'Đã hoàn thành';
+                default: return status;
+            }
+        }
+
+        // Hàm cập nhật thông tin tài khoản
+        function updateAccountInfo() {
+            const form = document.querySelector('.account-form');
+            const formData = {
+                full_name: form.querySelector('.input-fullname').value,
+                email: form.querySelector('input[type="email"]').value,
+                phone: form.querySelector('input[type="tel"]').value
+            };
+
+            fetch('/api/user/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Cập nhật thông tin thành công!', 'success');
+                        loadUserInfo(); // Reload thông tin user
+                    } else {
+                        showNotification('Có lỗi xảy ra khi cập nhật thông tin!', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Có lỗi xảy ra khi cập nhật thông tin!', 'error');
+                });
+        }
+
+        // Hàm load thông báo
+        function loadNotifications() {
+            fetch('/api/user/notifications')
+                .then(response => response.json())
+                .then(data => {
+                    const notiList = document.querySelector('.noti-list');
+                    const notiCount = document.querySelector('.noti-count');
+                    if (data.notifications && data.notifications.length > 0) {
+                        notiList.innerHTML = data.notifications.map(noti => `
+                            <div class="noti-item ${noti.read ? '' : 'unread'}">
+                                <div class="noti-icon">
+                                    <i class="${getNotiIcon(noti.type)}"></i>
+                                </div>
+                                <div class="noti-content">
+                                    <p class="noti-text">${noti.message}</p>
+                                    <span class="noti-time">${formatTimeAgo(noti.created_at)}</span>
+                                </div>
+                            </div>
+                        `).join('');
+                        // Count unread notifications
+                        const unreadCount = data.notifications.filter(n => !n.read).length;
+                        notiCount.textContent = unreadCount;
+                        document.querySelector('.dot').classList.toggle('has-noti', unreadCount > 0);
+                    } else {
+                        notiList.innerHTML = '<div class="no-notifications">No new notifications</div>';
+                        notiCount.textContent = '0';
+                        document.querySelector('.dot').classList.remove('has-noti');
+                    }
+                })
+                .catch(error => console.error('Error loading notifications:', error));
+        }
+
+        // Hàm load giao dịch
+        function loadTransactions() {
+            fetch('/api/user/transactions')
+                .then(response => response.json())
+                .then(data => {
+                    const transactionsList = document.querySelector('.transactions-list');
+
+                    if (data.transactions && data.transactions.length > 0) {
+                        transactionsList.innerHTML = data.transactions.map(transaction => `
+                            <div class="transaction-card" onclick="toggleTransactionDetails(this)">
+                                <div class="transaction-header">
+                                    <div class="transaction-date">${formatDate(transaction.date)}</div>
+                                    <div class="transaction-id">#${transaction.id}</div>
+                                </div>
+                                <div class="transaction-amount">${formatPrice(transaction.amount)}</div>
+                                <div class="transaction-info">
+                                    <div class="transaction-hotel">${transaction.hotel_name}</div>
+                                    <div class="transaction-nights">${transaction.nights} nights</div>
+                                </div>
+                                <span class="transaction-status status-${transaction.status.toLowerCase()}">
+                                    <i class="${getTransactionIcon(transaction.status)}"></i>
+                                    ${getTransactionStatus(transaction.status)}
+                                </span>
+                            </div>
+                        `).join('');
+                    } else {
+                        transactionsList.innerHTML = '<div class="no-transactions">Không có giao dịch nào</div>';
+                    }
+                })
+                .catch(error => console.error('Error loading transactions:', error));
+        }
+
+        // Hàm lấy icon cho thông báo
+        function getNotiIcon(type) {
+            switch (type) {
+                case 'booking': return 'fa-solid fa-calendar-check';
+                case 'payment': return 'fa-solid fa-credit-card';
+                case 'system': return 'fa-solid fa-circle-info';
+                default: return 'fa-solid fa-bell';
+            }
+        }
+
+        // Hàm lấy icon cho trạng thái giao dịch
+        function getTransactionIcon(status) {
+            switch (status.toLowerCase()) {
+                case 'completed': return 'fas fa-check-circle';
+                case 'pending': return 'fas fa-clock';
+                case 'failed': return 'fas fa-times-circle';
+                default: return 'fas fa-info-circle';
+            }
+        }
+
+        // Hàm lấy text trạng thái giao dịch
+        function getTransactionStatus(status) {
+            switch (status.toLowerCase()) {
+                case 'completed': return 'Hoàn thành';
+                case 'pending': return 'Đang xử lý';
+                case 'failed': return 'Thất bại';
+                default: return status;
+            }
+        }
+
+        // Hàm format thời gian
+        function formatTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            if (diffInSeconds < 60) return 'Just now';
+            if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+            if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+            if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`;
+            return date.toLocaleDateString('en-US');
+        }
+
+        // Hàm hiển thị thông báo
+        function showNotification(message, type = 'info') {
+            // Remove any existing notifications
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notification => notification.remove());
+
+            // Create new notification
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+
+            // Get icon based on type
+            let icon = '';
+            switch (type) {
+                case 'success':
+                    icon = 'fa-check-circle';
+                    break;
+                case 'error':
+                    icon = 'fa-times-circle';
+                    break;
+                case 'warning':
+                    icon = 'fa-exclamation-circle';
+                    break;
+                default:
+                    icon = 'fa-info-circle';
+            }
+
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas ${icon}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            // Hide and remove notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Hàm kiểm tra và hiển thị menu dựa trên role
+        function updateMenuByRole(role) {
+            const menuItems = document.querySelectorAll('.menu__func > div');
+            menuItems.forEach(item => {
+                const itemRole = item.getAttribute('data-role');
+                if (itemRole === role) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Hàm load thông tin khách sạn
+        function loadHotelInfo() {
+            fetch('/api/hotel/info')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('hotelName').value = data.name || '';
+                    document.getElementById('hotelAddress').value = data.address || '';
+                    document.getElementById('hotelDescription').value = data.description || '';
+                })
+                .catch(error => console.error('Error loading hotel info:', error));
+        }
+
+        // Hàm cập nhật thông tin khách sạn
+        function updateHotelInfo() {
+            const formData = {
+                name: document.getElementById('hotelName').value,
+                address: document.getElementById('hotelAddress').value,
+                description: document.getElementById('hotelDescription').value
+            };
+
+            fetch('/api/hotel/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Cập nhật thông tin khách sạn thành công!', 'success');
+                    } else {
+                        showNotification('Có lỗi xảy ra khi cập nhật thông tin!', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Có lỗi xảy ra khi cập nhật thông tin!', 'error');
+                });
+        }
+
+        // Hàm load thống kê
+        function loadDashboardStats() {
+            fetch('/api/hotel/dashboard')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('totalRooms').textContent = data.totalRooms || 0;
+                    document.getElementById('todayBookings').textContent = data.todayBookings || 0;
+                    document.getElementById('monthlyRevenue').textContent = formatPrice(data.monthlyRevenue || 0);
+                    document.getElementById('averageRating').textContent = (data.averageRating || 0).toFixed(1);
+
+                    // Vẽ biểu đồ doanh thu
+                    const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+                    new Chart(revenueCtx, {
+                        type: 'line',
+                        data: {
+                            labels: data.revenueChart.labels,
+                            datasets: [{
+                                label: 'Doanh thu',
+                                data: data.revenueChart.data,
+                                borderColor: '#1976d2',
+                                tension: 0.1
+                            }]
+                        }
+                    });
+
+                    // Vẽ biểu đồ tỷ lệ đặt phòng
+                    const bookingCtx = document.getElementById('bookingRateChart').getContext('2d');
+                    new Chart(bookingCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Đã đặt', 'Còn trống'],
+                            datasets: [{
+                                data: [data.bookingRate.occupied, data.bookingRate.available],
+                                backgroundColor: ['#43a047', '#e0e0e0']
+                            }]
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading dashboard stats:', error));
+        }
+
+        // Hàm load booking history cho owner
+        function loadOwnerBookingHistory() {
+            fetch('/api/owner/booking-history')
+                .then(response => response.json())
+                .then(data => {
+                    const historyList = document.querySelector('.booking-history-list');
+                    if (!historyList) return;
+                    if (data.bookings && data.bookings.length > 0) {
+                        historyList.innerHTML = data.bookings.map(b => {
+                            const nights = b.nights || (b.check_in && b.check_out ? calculateDays(b.check_in, b.check_out) : 1);
+                            return `
+                                <div class="card">
+                                    <div class="card__img">
+                                        <div class="payment-status ${b.payment_status ? 'status-' + b.payment_status.toLowerCase() : ''}">
+                                            Payment: ${b.payment_status ? b.payment_status.charAt(0).toUpperCase() + b.payment_status.slice(1) : 'N/A'}
+                                        </div>
+                                        <img src="${b.image_url || '/assets/image/default-room.webp'}" alt="Room Image">
+                                    </div>
+                                    <div class="card__info">
+                                        <div class="date"><b>${b.check_in} - ${b.check_out}</b></div>
+                                        <div class="day">${nights} Night(s)</div>
+                                        <div class="location">${b.hotel_name || ''}</div>
+                                        <div class="room-type">${b.room_type || ''}</div>
+                                        <div class="address">Booked by: ${b.booked_by || ''}</div>
+                                        <div class="address">Phone: ${b.user_phone || ''}</div>
+                                        <div class="address">Email: ${b.user_email || ''}</div>
+                                        <div class="address">Rooms: ${b.num_rooms || 1}</div>
+                                        <div class="address">Created: ${b.created_at || ''}</div>
+                                        <div class="total-price">Total: ${formatPrice(b.total_price)}</div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+                    } else {
+                        historyList.innerHTML = '<div class="no-bookings">No booking history found.</div>';
+                    }
+                })
+                .catch(error => {
+                    const historyList = document.querySelector('.booking-history-list');
+                    if (historyList) historyList.innerHTML = '<div class="no-bookings">Error loading booking history.</div>';
+                });
+        }
+
+        // Hàm load các hạng phòng mà owner quản lý
+        function loadOwnerRoomTypes() {
+            fetch('/api/owner/room-types')
+                .then(response => response.json())
+                .then(data => {
+                    const roomList = document.querySelector('#room-management .room-list');
+                    if (!roomList) return;
+                    if (data.rooms && data.rooms.length > 0) {
+                        roomList.innerHTML = data.rooms.map(r => `
+                            <div class="card">
+                                <div class="card__img">
+                                    <img src="${r.image_url || '/assets/image/default-room.webp'}" alt="Room Image">
+                                </div>
+                                <div class="card__info">
+                                    <div class="room-type"><b>${r.room_type}</b></div>
+                                    <div class="location">Hotel: ${r.hotel_name}</div>
+                                    <div class="address">Available: ${r.availableRooms}</div>
+                                </div>
+                            </div>
+                        `).join('');
+                    } else {
+                        roomList.innerHTML = '<div class="no-bookings">No room types found.</div>';
+                    }
+                })
+                .catch(error => {
+                    const roomList = document.querySelector('#room-management .room-list');
+                    if (roomList) roomList.innerHTML = '<div class="no-bookings">Error loading room types.</div>';
+                });
+        }
+
+        // Hàm load thống kê dashboard cho owner
+        function loadOwnerDashboardStats() {
+            fetch('/api/owner/dashboard')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('totalHotels').textContent = data.total_hotels || 0;
+                    document.getElementById('totalRooms').textContent = data.total_rooms || 0;
+                    document.getElementById('totalBookings').textContent = data.total_bookings || 0;
+                    document.getElementById('totalRevenue').textContent = formatPrice(data.total_revenue || 0);
+                    // Hiển thị danh sách khách sạn
+                    const hotelList = document.getElementById('ownerHotelList');
+                    if (hotelList && data.hotels) {
+                        hotelList.innerHTML = data.hotels.map(h => `
+                            <button class="hotel-btn" onclick="loadHotelDashboard(${h.hotel_id}, '${h.hotel_name.replace(/'/g, "\\'")}')">${h.hotel_name}</button>
+                        `).join('');
+                    }
+                })
+                .catch(err => console.error('Error loading dashboard:', err));
+        }
+        function loadHotelDashboard(hotelId, hotelName) {
+            fetch(`/api/hotel/${hotelId}/dashboard`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('totalHotels').textContent = hotelName;
+                    document.getElementById('totalRooms').textContent = data.total_rooms || 0;
+                    document.getElementById('totalBookings').textContent = data.total_bookings || 0;
+                    document.getElementById('totalRevenue').textContent = formatPrice(data.total_revenue || 0);
+                })
+                .catch(err => console.error('Error loading hotel dashboard:', err));
+        }
+
+        // Cập nhật khởi tạo trang
+        document.addEventListener('DOMContentLoaded', function () {
+            loadUserInfo();
+
+            // Lấy role từ /api/user/info thay vì /api/user/role
+            fetch('/api/user/info')
+                .then(response => response.json())
+                .then(data => {
+                    const role = (data.role || '').toLowerCase();
+                    updateMenuByRole(role === 'owner' ? 'owner' : 'customer');
+                    if (role === 'owner') {
+                        loadHotelInfo();
+                        loadDashboardStats();
+                    } else {
+                        loadBookings();
+                        loadTransactions();
+                    }
+
+                    // Tự động chuyển section phù hợp với role
+                    setTimeout(function () {
+                        const firstMenu = Array.from(document.querySelectorAll('.menu__func > div')).find(item => item.style.display !== 'none');
+                        if (firstMenu) {
+                            let sectionId = '';
+                            if (firstMenu.getAttribute('data-role') === 'customer') {
+                                sectionId = 'bookings';
+                            } else if (firstMenu.getAttribute('data-role') === 'owner') {
+                                sectionId = 'booking-history';
+                            }
+                            if (sectionId) switchSection(sectionId);
+                        }
+                    }, 0);
+                })
+                .catch(error => {
+                    console.error('Error loading user info:', error);
+                    updateMenuByRole('customer');
+                    loadBookings();
+                    loadTransactions();
+                    setTimeout(function () {
+                        switchSection('bookings');
+                    }, 0);
+                });
+
+            loadNotifications();
+
+            // Thêm event listener cho nút Save Changes
+            const saveButton = document.querySelector('.save-btn');
+            if (saveButton) {
+                saveButton.addEventListener('click', updateAccountInfo);
+            }
+        });
+
+        function changePassword() {
+            const form = document.querySelector('.password-form');
+            const currentPassword = form.querySelector('.current-password').value;
+            const newPassword = form.querySelector('.new-password').value;
+            const confirmPassword = form.querySelector('.confirm-password').value;
+
+            // Validate passwords
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                showNotification('Vui lòng điền đầy đủ thông tin!', 'warning');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                showNotification('Mật khẩu mới phải có ít nhất 6 ký tự!', 'warning');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                showNotification('Mật khẩu mới không khớp!', 'warning');
+                return;
+            }
+
+            // Disable button while processing
+            const changeButton = form.querySelector('.change-password-btn');
+            changeButton.disabled = true;
+            changeButton.textContent = 'Đang xử lý...';
+
+            fetch('/api/user/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Có lỗi xảy ra khi kết nối đến server');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Đổi mật khẩu thành công! Vui lòng đăng nhập lại.', 'success');
+                        // Clear form
+                        form.reset();
+                        // Redirect to login page after 2 seconds
+                        setTimeout(() => {
+                            window.location.href = '/login';
+                        }, 2000);
+                    } else {
+                        showNotification(data.message || 'Có lỗi xảy ra khi đổi mật khẩu!', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification(error.message || 'Có lỗi xảy ra khi đổi mật khẩu!', 'error');
+                })
+                .finally(() => {
+                    // Re-enable button
+                    changeButton.disabled = false;
+                    changeButton.textContent = 'Change Password';
+                });
+        }
+
+        // Add event listener for change password button
+        document.addEventListener('DOMContentLoaded', function () {
+            const changePasswordBtn = document.querySelector('.change-password-btn');
+            if (changePasswordBtn) {
+                changePasswordBtn.addEventListener('click', changePassword);
+            }
+        });
+
+        function openHelpPopup() {
+            document.getElementById('helpPopup').style.display = 'flex';
+        }
+        function closeHelpPopup() {
+            document.getElementById('helpPopup').style.display = 'none';
+        }
+        // Đóng popup khi click ra ngoài
+        window.addEventListener('click', function (event) {
+            var popup = document.getElementById('helpPopup');
+            if (popup && event.target === popup) {
+                closeHelpPopup();
+            }
+        });
+
+        // Hàm load notification cho user
+        function loadUserNotifications() {
+            fetch('/api/user/notifications')
+                .then(response => response.json())
+                .then(data => {
+                    const notiList = document.querySelector('.noti-list');
+                    const notiCount = document.querySelector('.noti-count');
+                    if (!notiList || !notiCount) return;
+                    if (data.notifications && data.notifications.length > 0) {
+                        notiList.innerHTML = data.notifications.slice(0, 10).map(noti => `
+                            <div class="noti-item ${noti.read ? '' : 'unread'}">
+                                <i class="${getNotiIcon(noti.type)}"></i>
+                                <span>${noti.message}</span>
+                                <span class="noti-time">${formatTimeAgo(noti.created_at)}</span>
+                            </div>
+                        `).join('');
+                        notiCount.textContent = data.notifications.filter(n => !n.read).length;
+                    } else {
+                        notiList.innerHTML = '<div class="no-noti">No notifications</div>';
+                        notiCount.textContent = '0';
+                    }
+                })
+                .catch(err => {
+                    const notiList = document.querySelector('.noti-list');
+                    if (notiList) notiList.innerHTML = '<div class="no-noti">Error loading notifications</div>';
+                });
+        }
+
+        // Gọi hàm này khi trang load
+        window.addEventListener('DOMContentLoaded', loadUserNotifications);
+
+        // Hàm tiếp tục thanh toán
+        function continuePayment(bookingId) {
+            window.location.href = `/payment/${bookingId}`;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/user.js"></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6826bd708ec535190f11a681/1irbl80k7';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+
+</html>
