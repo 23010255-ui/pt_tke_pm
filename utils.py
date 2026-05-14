@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from sqlalchemy.orm import Session
-from models import User, Hotel, Room, Service, Review, Booking, Payment
+from models import User, Hotel, Room, Service, Review, Booking, Payment, UserRole
 from flask_mail import Message
 from flask import current_app
 import os
@@ -14,7 +14,7 @@ def create_user(db: Session, username: str, password: str, email: str, full_name
         email=email,
         full_name=full_name,
         phone=phone,
-        is_admin=0
+        role=UserRole.CUSTOMER
     )
     db.add(user)
     db.commit()
@@ -26,18 +26,6 @@ def verify_user(db: Session, username: str, password: str):
     if user and check_password_hash(user.password, password):
         return user
     return None
-
-def create_guest(db: Session, guest_name: str, email: str, phone: str, nationality: str = None):
-    guest = Guest(
-        guest_name=guest_name,
-        email=email,
-        phone=phone,
-        nationality=nationality
-    )
-    db.add(guest)
-    db.commit()
-    db.refresh(guest)
-    return guest
 
 def get_available_rooms(db: Session, hotel_id: int = None, room_type: str = None):
     query = db.query(Room).filter(Room.availableRooms > 0)
@@ -97,9 +85,6 @@ def get_hotel_by_id(db: Session, hotel_id: int):
 
 def get_room_by_id(db: Session, room_id: int):
     return db.query(Room).filter(Room.room_id == room_id).first()
-
-def get_guest_by_id(db: Session, guest_id: int):
-    return db.query(Guest).filter(Guest.id == guest_id).first()
 
 def get_user_by_id(db: Session, user_id: int):
     return db.query(User).filter(User.user_id == user_id).first()

@@ -38,13 +38,13 @@ app = Flask(__name__,
 )
 app.secret_key = 'your-secret-key'  # Thay thế bằng secret key của bạn
 app.permanent_session_lifetime = timedelta(days=7)  # Thời gian lưu session
-app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_SECURE'] = False  # True chỉ khi dùng HTTPS (production)
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['SESSION_COOKIE_NAME'] = 'hanoibooking_session'  # Tên cookie session
 app.config['REMEMBER_COOKIE_NAME'] = 'hanoibooking_remember'  # Tên cookie remember me
 app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=7)  # Thời gian lưu remember me
-app.config['REMEMBER_COOKIE_SECURE'] = True
+app.config['REMEMBER_COOKIE_SECURE'] = False  # True chỉ khi dùng HTTPS (production)
 app.config['REMEMBER_COOKIE_HTTPONLY'] = True
 app.config['REMEMBER_COOKIE_SAMESITE'] = 'Lax'
 
@@ -52,8 +52,8 @@ app.config['REMEMBER_COOKIE_SAMESITE'] = 'Lax'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'thanhsc170725@gmail.com'  # Thay thế bằng email của bạn
-app.config['MAIL_PASSWORD'] = 'jgyt xeev ihvr mzyo'  # Thay thế bằng mật khẩu ứng dụng Gmail
+app.config['MAIL_USERNAME'] = 'khanhsctb@gmail.com'  # Thay thế bằng email của bạn
+app.config['MAIL_PASSWORD'] = 'jksw xass tfik adky'  # Thay thế bằng mật khẩu ứng dụng Gmail
 app.config['MAIL_DEFAULT_SENDER'] = app.config['MAIL_USERNAME']
 mail = Mail(app)
 
@@ -91,8 +91,16 @@ db_session = scoped_session(sessionmaker(bind=engine))
 def cleanup(resp_or_exc):
     db_session.remove()
 
+@app.errorhandler(404)
+def handle_404(e):
+    # Bỏ qua favicon.ico và các file tĩnh không tồn tại
+    return "Page not found", 404
+
 @app.errorhandler(Exception)
 def handle_error(e):
+    from werkzeug.exceptions import HTTPException
+    if isinstance(e, HTTPException):
+        return e.get_response()
     db_session.rollback()
     app.logger.error(f"Unhandled error: {str(e)}")
     return "An error occurred. Please try again.", 500
@@ -390,7 +398,7 @@ def login():
                 'message': 'Có lỗi xảy ra. Vui lòng thử lại!'
             }), 500
             
-    return render_template('register.html', showLogin=True)
+    return render_template('register.html')
 
 # Route cho đăng ký
 @app.route('/register', methods=['GET', 'POST'])
@@ -454,7 +462,7 @@ def register():
                 'message': 'Có lỗi xảy ra khi đăng ký. Vui lòng thử lại!'
             }), 500
             
-    return render_template('register.html')
+    return render_template('register.html', showRegister=True)
 
 # Route cho đặt phòng
 @app.route('/book/<int:room_id>', methods=['GET', 'POST'])
@@ -1270,8 +1278,8 @@ def change_password():
     return render_template('change_password.html')
 
 VNPAY_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'
-VNP_TMN_CODE = 'IQRCRXK8'
-VNP_HASH_SECRET = 'STDTDERBNDXT2LRBW1U4B59N72ZWWXDF'
+VNP_TMN_CODE = 'U0DUG7RM'
+VNP_HASH_SECRET = 'HHY7JSVLHOCCD7MU0208SN9M56PL8FZZ'
 
 def build_vnpay_query_and_hash(vnp_params, secret_key):
     sorted_items = sorted(
@@ -1299,8 +1307,9 @@ def vnpay_pay():
     amount_vnd = int(amount)
     if amount_vnd < 5000 or amount_vnd >= 1_000_000_000:
         return "Số tiền không hợp lệ (từ 5,000 đến dưới 1 tỷ đồng)", 400
-    order_id = 'ORDER' + datetime.now().strftime('%Y%m%d%H%M%S')
-    order_desc = f"Thanh toán đơn hàng {order_id}"
+    import random
+    order_id = 'ORDER' + datetime.now().strftime('%Y%m%d%H%M%S') + str(random.randint(100, 999))
+    order_desc = f"Thanh toan don hang {order_id}"
     user_ip = request.remote_addr or '127.0.0.1'
     # Build return URL động theo domain thực tế
     return_url = request.url_root.rstrip('/') + '/vnpay_return'
@@ -1372,10 +1381,8 @@ def vnpay_return():
                 if not booking:
                     return "Không tìm thấy booking liên kết với payment!", 404
                 booking.status = 'success'
-                # Trừ số phòng khi booking thành công
+                # Không trừ phòng ở đây vì đã trừ ở /book_and_pay khi tạo booking
                 room = db_session.query(Room).filter_by(room_id=booking.room_id).first()
-                if room and room.availableRooms is not None:
-                    room.availableRooms = max(0, room.availableRooms - booking.num_rooms)
                 db_session.commit()
                 user = db_session.query(User).filter_by(user_id=booking.user_id).first()
                 hotel = db_session.query(Hotel).filter_by(hotel_id=room.hotel_id).first() if room else None
@@ -1388,7 +1395,10 @@ def vnpay_return():
                     'check_out': booking.check_out.strftime('%d/%m/%Y'),
                     'total_price': int(booking.total_price)
                 }
-                send_booking_success_email(user.email, booking_info)
+                try:
+                    send_booking_success_email(user.email, booking_info)
+                except Exception as mail_err:
+                    app.logger.error(f"Failed to send booking email: {str(mail_err)}")
                 # Thêm notification booking thành công
                 now_vn = datetime.utcnow() + timedelta(hours=7)
                 notification1 = Notification(
@@ -2001,4 +2011,4 @@ if __name__ == '__main__':
     except Exception as e:
         print(f"Error creating database tables: {str(e)}")
         
-    app.run(debug=True) 
+    app.run(debug=True, port=5001)  # Port 5001 vì macOS AirPlay chiếm port 5000

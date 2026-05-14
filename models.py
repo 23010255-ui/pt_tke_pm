@@ -126,6 +126,7 @@ class Review(Base):
     rating = Column(Float)
     comment = Column(String(200))
     hotel_id = Column(Integer, ForeignKey('hotels.hotel_id'), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
     
     # Relationships
     user = relationship("User", back_populates="reviews")

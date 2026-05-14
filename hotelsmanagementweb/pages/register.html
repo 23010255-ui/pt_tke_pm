@@ -76,35 +76,7 @@
         </div>
     </div>
     <div class="form-container">
-        <div class="form" id="registerForm">
-            <h1 class="title" style="text-align: center;">Create Account</h1>
-            <div id="messageBox"></div>
-            <form id="registrationForm" onsubmit="handleRegister(event)">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="full_name" class="input" placeholder="Enter your name" required>
-
-                <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone" class="input" placeholder="Enter your number phone" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" class="input" placeholder="Enter my email" required>
-
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" class="input" placeholder="Enter my username" required>
-
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="input" placeholder="Enter my password"
-                    required>
-
-                <div class="btn-res" style="text-align: center;">
-                    <button type="submit" class="btn__res">Register</button>
-                </div>
-            </form>
-
-            <a class="login" href="#" onclick="toggleForms(event)" style="text-align: center;">Login</a>
-        </div>
-
-        <div class="form slide-right" id="loginForm">
+        <div class="form" id="loginFormContainer">
             <h1 class="title" style="text-align: center;">Login</h1>
             <div id="loginMessageBox"></div>
             <form id="loginForm" onsubmit="handleLogin(event)">
@@ -129,32 +101,61 @@
                 </div>
             </form>
 
-            <a class="login" href="#" onclick="toggleForms(event)" style="text-align: center;">Register</a>
+            <a class="login" href="#" onclick="toggleForms(event)" style="text-align: center;">Don't have an account? Register</a>
+        </div>
+
+        <div class="form slide-right" id="registerFormContainer">
+            <h1 class="title" style="text-align: center;">Create Account</h1>
+            <div id="messageBox"></div>
+            <form id="registrationForm" onsubmit="handleRegister(event)">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="full_name" class="input" placeholder="Enter your name" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" class="input" placeholder="Enter your number phone" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="input" placeholder="Enter my email" required>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="input" placeholder="Enter my username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="input" placeholder="Enter my password"
+                    required>
+
+                <div class="btn-res" style="text-align: center;">
+                    <button type="submit" class="btn__res">Register</button>
+                </div>
+            </form>
+
+            <a class="login" href="#" onclick="toggleForms(event)" style="text-align: center;">Already have an account? Login</a>
         </div>
     </div>
 
     <script>
         window.onload = function () {
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('showLogin') === 'true') {
-                const registerForm = document.getElementById('registerForm');
-                const loginForm = document.getElementById('loginForm');
-                registerForm.classList.add('slide-left');
-                loginForm.classList.remove('slide-right');
+            const showRegister = urlParams.get('showRegister') === 'true' || {{ 'true' if showRegister else 'false' }};
+            if (showRegister) {
+                const loginForm = document.getElementById('loginFormContainer');
+                const registerForm = document.getElementById('registerFormContainer');
+                loginForm.classList.add('slide-left');
+                registerForm.classList.remove('slide-right');
             }
         };
 
         function toggleForms(event) {
             event.preventDefault();
-            const registerForm = document.getElementById('registerForm');
-            const loginForm = document.getElementById('loginForm');
+            const loginForm = document.getElementById('loginFormContainer');
+            const registerForm = document.getElementById('registerFormContainer');
 
-            if (loginForm.classList.contains('slide-right')) {
-                registerForm.classList.add('slide-left');
-                loginForm.classList.remove('slide-right');
+            if (registerForm.classList.contains('slide-right')) {
+                loginForm.classList.add('slide-left');
+                registerForm.classList.remove('slide-right');
             } else {
-                loginForm.classList.add('slide-right');
-                registerForm.classList.remove('slide-left');
+                registerForm.classList.add('slide-right');
+                loginForm.classList.remove('slide-left');
             }
         }
 
@@ -186,7 +187,7 @@
                 if (data.success) {
                     showMessage('Đăng ký thành công! Vui lòng đăng nhập.', 'success');
                     setTimeout(() => {
-                        window.location.href = '/login?showLogin=true';
+                        window.location.href = '/login';
                     }, 1500);
                 } else {
                     showMessage(data.message || 'Đăng ký thất bại!', 'error');
