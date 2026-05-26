@@ -898,12 +898,19 @@ def search_hotels():
             return jsonify({'error': 'Check-out date must be after check-in date'}), 400
         nights = (check_out - check_in).days
         location_search = remove_vietnamese_tones(data['location'].strip().lower())
+        # Normalize: remove all spaces for flexible matching (e.g. "ha noi" vs "hanoi")
+        location_search_nospace = location_search.replace(' ', '')
         hotels_query = db_session.query(Hotel).all()
         filtered_hotels = []
         for h in hotels_query:
             province = remove_vietnamese_tones(extract_province(h.address_hotel)).lower().strip()
             address = remove_vietnamese_tones(h.address_hotel).lower().strip()
-            if location_search in province or location_search in address:
+            province_nospace = province.replace(' ', '')
+            address_nospace = address.replace(' ', '')
+            # Check both with and without spaces, in both directions
+            if (location_search in province or location_search in address
+                or location_search_nospace in province_nospace or location_search_nospace in address_nospace
+                or province_nospace in location_search_nospace):
                 filtered_hotels.append(h)
             else:
                 print(f"[NOT MATCH] location_search: '{location_search}' not in province: '{province}' and not in address: '{address}'")
@@ -2002,6 +2009,58 @@ def delete_booking(booking_id):
         db_session.rollback()
         app.logger.error(f"[DELETE BOOKING] Exception: {str(e)} | booking_id={booking_id}, user_id={current_user.user_id}")
         return jsonify({'success': False, 'message': str(e)}), 500
+
+# ===== AI Booking Assistant API =====
+import logging as _logging
+_logging.getLogger('sqlalchemy.engine').setLevel(_logging.WARNING)
+_logging.getLogger('sqlalchemy').setLevel(_logging.WARNING)
+
+from ai_agent.graph import chat as ai_chat
+
+@app.route('/api/chat', methods=['POST'])
+def api_chat():
+    """API endpoint cho AI Booking Assistant chatbot."""
+    data = request.get_json()
+    message = data.get('message', '').strip()
+    user_lat = data.get('lat')
+    user_lng = data.get('lng')
+    is_nearby = data.get('is_nearby', False)  # Cờ chỉ gửi tọa độ khi tìm KS gần
+    history_data = data.get('history', [])  # Lịch sử hội thoại từ frontend
+
+    if not message and not user_lat:
+        return jsonify({"reply": "Vui lòng nhập tin nhắn."}), 400
+
+    user_id = None
+    if current_user and current_user.is_authenticated:
+        user_id = current_user.user_id
+
+    # Chỉ gắn tọa độ khi đây là yêu cầu nearby, không phải mọi tin nhắn
+    if is_nearby and user_lat and user_lng:
+        if message:
+            message = f"{message} (vị trí GPS: {user_lat}, {user_lng})"
+        else:
+            message = f"Tìm khách sạn gần tọa độ {user_lat}, {user_lng}"
+
+    # Chuyển history từ frontend thành LangChain messages
+    from langchain_core.messages import HumanMessage, AIMessage
+    history = []
+    for item in history_data:
+        if item.get('role') == 'user':
+            history.append(HumanMessage(content=item['content']))
+        elif item.get('role') == 'bot':
+            history.append(AIMessage(content=item['content']))
+
+    try:
+        reply = ai_chat(message=message, user_id=user_id, history=history)
+        # Loại bỏ tọa độ GPS ra khỏi câu trả lời
+        import re
+        reply = re.sub(r'\(vị trí:?\s*[\d\.\-]+,\s*[\d\.\-]+\)', '', reply)
+        reply = re.sub(r'\(vị trí GPS:?\s*[\d\.\-]+,\s*[\d\.\-]+\)', '', reply)
+        reply = re.sub(r'vị trí:?\s*[\d\.\-]+,\s*[\d\.\-]+', 'vị trí của bạn', reply)
+        return jsonify({"reply": reply})
+    except Exception as e:
+        app.logger.error(f"[AI CHAT] Error: {str(e)}")
+        return jsonify({"reply": "Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại."}), 500
 
 if __name__ == '__main__':
     try:

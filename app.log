@@ -3050,3 +3050,374 @@
 [2026-05-13 17:50:16,717] DEBUG in app: Rendering template
 [2026-05-13 17:50:18,340] DEBUG in app: Current user in /api/user/info: user_id=38, is_authenticated=True
 [2026-05-13 17:50:34,720] DEBUG in app: Current user in /api/user/info: user_id=38, is_authenticated=True
+[2026-05-14 10:25:42,888] DEBUG in app: Starting home route
+[2026-05-14 10:25:42,891] DEBUG in app: Current user: <models.User object at 0x10724a3c0>
+[2026-05-14 10:25:42,892] DEBUG in app: Executing most picked hotels query
+[2026-05-14 10:25:42,894] DEBUG in app: Processed 5 most picked hotels
+[2026-05-14 10:25:42,894] DEBUG in app: Executing list room hotels query
+[2026-05-14 10:25:42,896] DEBUG in app: Processed 8 list room hotels
+[2026-05-14 10:25:42,896] DEBUG in app: Rendering template
+[2026-05-14 10:28:29,459] DEBUG in app: Starting home route
+[2026-05-14 10:28:29,460] DEBUG in app: Current user: None
+[2026-05-14 10:28:29,460] DEBUG in app: Executing most picked hotels query
+[2026-05-14 10:28:29,464] DEBUG in app: Processed 5 most picked hotels
+[2026-05-14 10:28:29,464] DEBUG in app: Executing list room hotels query
+[2026-05-14 10:28:29,468] DEBUG in app: Processed 8 list room hotels
+[2026-05-14 10:28:29,468] DEBUG in app: Rendering template
+[2026-05-14 10:28:40,871] DEBUG in app: User before login: 38
+[2026-05-14 10:28:40,872] DEBUG in app: Login user successfully, user_id=38
+[2026-05-14 10:28:41,886] DEBUG in app: Starting home route
+[2026-05-14 10:28:41,888] DEBUG in app: Current user: <models.User object at 0x10745a450>
+[2026-05-14 10:28:41,888] DEBUG in app: Executing most picked hotels query
+[2026-05-14 10:28:41,891] DEBUG in app: Processed 5 most picked hotels
+[2026-05-14 10:28:41,891] DEBUG in app: Executing list room hotels query
+[2026-05-14 10:28:41,893] DEBUG in app: Processed 8 list room hotels
+[2026-05-14 10:28:41,894] DEBUG in app: Rendering template
+[2026-05-14 10:28:45,782] DEBUG in app: Starting home route
+[2026-05-14 10:28:45,782] DEBUG in app: Current user: None
+[2026-05-14 10:28:45,783] DEBUG in app: Executing most picked hotels query
+[2026-05-14 10:28:45,786] DEBUG in app: Processed 5 most picked hotels
+[2026-05-14 10:28:45,786] DEBUG in app: Executing list room hotels query
+[2026-05-14 10:28:45,789] DEBUG in app: Processed 8 list room hotels
+[2026-05-14 10:28:45,790] DEBUG in app: Rendering template
+[2026-05-14 10:28:49,222] DEBUG in app: User before login: 37
+[2026-05-14 10:28:49,223] DEBUG in app: Login user successfully, user_id=37
+[2026-05-14 10:28:50,237] DEBUG in app: Starting home route
+[2026-05-14 10:28:50,240] DEBUG in app: Current user: <models.User object at 0x107480ad0>
+[2026-05-14 10:28:50,240] DEBUG in app: Executing most picked hotels query
+[2026-05-14 10:28:50,242] DEBUG in app: Processed 5 most picked hotels
+[2026-05-14 10:28:50,242] DEBUG in app: Executing list room hotels query
+[2026-05-14 10:28:50,245] DEBUG in app: Processed 8 list room hotels
+[2026-05-14 10:28:50,245] DEBUG in app: Rendering template
+[2026-05-14 10:28:57,684] DEBUG in app: User before login: 37
+[2026-05-14 10:28:57,684] DEBUG in app: Login user successfully, user_id=37
+[2026-05-14 10:28:58,694] DEBUG in app: Starting home route
+[2026-05-14 10:28:58,696] DEBUG in app: Current user: <models.User object at 0x1074c6d00>
+[2026-05-14 10:28:58,696] DEBUG in app: Executing most picked hotels query
+[2026-05-14 10:28:58,698] DEBUG in app: Processed 5 most picked hotels
+[2026-05-14 10:28:58,698] DEBUG in app: Executing list room hotels query
+[2026-05-14 10:28:58,703] DEBUG in app: Processed 8 list room hotels
+[2026-05-14 10:28:58,703] DEBUG in app: Rendering template
+[2026-05-19 11:22:19,994] DEBUG in app: Starting home route
+[2026-05-19 11:22:20,001] DEBUG in app: Current user: <models.User object at 0x1062102f0>
+[2026-05-19 11:22:20,006] DEBUG in app: Executing most picked hotels query
+[2026-05-19 11:22:20,011] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 11:22:20,011] DEBUG in app: Executing list room hotels query
+[2026-05-19 11:22:20,012] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 11:22:20,012] DEBUG in app: Rendering template
+[2026-05-19 11:22:25,008] DEBUG in app: Starting home route
+[2026-05-19 11:22:25,008] DEBUG in app: Current user: None
+[2026-05-19 11:22:25,009] DEBUG in app: Executing most picked hotels query
+[2026-05-19 11:22:25,016] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 11:22:25,017] DEBUG in app: Executing list room hotels query
+[2026-05-19 11:22:25,026] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 11:22:25,027] DEBUG in app: Rendering template
+[2026-05-19 11:22:27,920] DEBUG in app: User before login: 38
+[2026-05-19 11:22:27,920] DEBUG in app: Login user successfully, user_id=38
+[2026-05-19 11:22:28,937] DEBUG in app: Starting home route
+[2026-05-19 11:22:28,939] DEBUG in app: Current user: <models.User object at 0x10614a8b0>
+[2026-05-19 11:22:28,939] DEBUG in app: Executing most picked hotels query
+[2026-05-19 11:22:28,942] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 11:22:28,942] DEBUG in app: Executing list room hotels query
+[2026-05-19 11:22:28,948] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 11:22:28,948] DEBUG in app: Rendering template
+[2026-05-19 11:22:55,675] DEBUG in app: Current user in /api/user/info: user_id=38, is_authenticated=True
+[2026-05-19 11:22:55,683] DEBUG in app: Current user in /api/user/info: user_id=38, is_authenticated=True
+[2026-05-19 11:23:05,840] DEBUG in app: Starting home route
+[2026-05-19 11:23:05,842] DEBUG in app: Current user: <models.User object at 0x10617be30>
+[2026-05-19 11:23:05,843] DEBUG in app: Executing most picked hotels query
+[2026-05-19 11:23:05,847] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 11:23:05,847] DEBUG in app: Executing list room hotels query
+[2026-05-19 11:23:05,850] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 11:23:05,851] DEBUG in app: Rendering template
+[2026-05-19 11:55:28,010] DEBUG in app: Starting home route
+[2026-05-19 11:55:28,014] DEBUG in app: Current user: <models.User object at 0x1124812b0>
+[2026-05-19 11:55:28,014] DEBUG in app: Executing most picked hotels query
+[2026-05-19 11:55:28,016] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 11:55:28,016] DEBUG in app: Executing list room hotels query
+[2026-05-19 11:55:28,018] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 11:55:28,018] DEBUG in app: Rendering template
+[2026-05-19 12:04:28,197] DEBUG in app: Starting home route
+[2026-05-19 12:04:28,199] DEBUG in app: Current user: <models.User object at 0x1095252b0>
+[2026-05-19 12:04:28,199] DEBUG in app: Executing most picked hotels query
+[2026-05-19 12:04:28,202] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 12:04:28,202] DEBUG in app: Executing list room hotels query
+[2026-05-19 12:04:28,205] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 12:04:28,205] DEBUG in app: Rendering template
+[2026-05-19 12:13:24,481] DEBUG in app: Starting home route
+[2026-05-19 12:13:24,486] DEBUG in app: Current user: <models.User object at 0x10a0812b0>
+[2026-05-19 12:13:24,486] DEBUG in app: Executing most picked hotels query
+[2026-05-19 12:13:24,489] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 12:13:24,489] DEBUG in app: Executing list room hotels query
+[2026-05-19 12:13:24,491] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 12:13:24,491] DEBUG in app: Rendering template
+[2026-05-19 13:00:48,626] DEBUG in app: Starting home route
+[2026-05-19 13:00:48,628] DEBUG in app: Current user: <models.User object at 0x1200812b0>
+[2026-05-19 13:00:48,628] DEBUG in app: Executing most picked hotels query
+[2026-05-19 13:00:48,631] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 13:00:48,631] DEBUG in app: Executing list room hotels query
+[2026-05-19 13:00:48,633] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 13:00:48,633] DEBUG in app: Rendering template
+[2026-05-19 13:05:46,399] DEBUG in app: Starting home route
+[2026-05-19 13:05:46,402] DEBUG in app: Current user: <models.User object at 0x123014050>
+[2026-05-19 13:05:46,402] DEBUG in app: Executing most picked hotels query
+[2026-05-19 13:05:46,407] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 13:05:46,407] DEBUG in app: Executing list room hotels query
+[2026-05-19 13:05:46,411] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 13:05:46,411] DEBUG in app: Rendering template
+[2026-05-19 13:45:05,141] DEBUG in app: Starting home route
+[2026-05-19 13:45:05,142] DEBUG in app: Current user: None
+[2026-05-19 13:45:05,142] DEBUG in app: Executing most picked hotels query
+[2026-05-19 13:45:05,150] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 13:45:05,150] DEBUG in app: Executing list room hotels query
+[2026-05-19 13:45:05,152] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 13:45:05,152] DEBUG in app: Rendering template
+[2026-05-19 13:46:36,700] DEBUG in app: User before login: 38
+[2026-05-19 13:46:36,701] DEBUG in app: Login user successfully, user_id=38
+[2026-05-19 13:46:37,718] DEBUG in app: Starting home route
+[2026-05-19 13:46:37,725] DEBUG in app: Current user: <models.User object at 0x124821d10>
+[2026-05-19 13:46:37,725] DEBUG in app: Executing most picked hotels query
+[2026-05-19 13:46:37,730] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 13:46:37,730] DEBUG in app: Executing list room hotels query
+[2026-05-19 13:46:37,735] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 13:46:37,735] DEBUG in app: Rendering template
+[2026-05-19 13:54:36,470] DEBUG in app: Starting home route
+[2026-05-19 13:54:36,472] DEBUG in app: Current user: <models.User object at 0x109ad92b0>
+[2026-05-19 13:54:36,472] DEBUG in app: Executing most picked hotels query
+[2026-05-19 13:54:36,474] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 13:54:36,474] DEBUG in app: Executing list room hotels query
+[2026-05-19 13:54:36,477] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 13:54:36,477] DEBUG in app: Rendering template
+[2026-05-19 13:54:37,129] DEBUG in app: Starting home route
+[2026-05-19 13:54:37,131] DEBUG in app: Current user: <models.User object at 0x109b34690>
+[2026-05-19 13:54:37,131] DEBUG in app: Executing most picked hotels query
+[2026-05-19 13:54:37,135] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 13:54:37,135] DEBUG in app: Executing list room hotels query
+[2026-05-19 13:54:37,141] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 13:54:37,141] DEBUG in app: Rendering template
+[2026-05-19 13:55:12,996] DEBUG in app: Starting home route
+[2026-05-19 13:55:12,996] DEBUG in app: Current user: None
+[2026-05-19 13:55:12,996] DEBUG in app: Executing most picked hotels query
+[2026-05-19 13:55:12,999] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 13:55:12,999] DEBUG in app: Executing list room hotels query
+[2026-05-19 13:55:13,001] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 13:55:13,001] DEBUG in app: Rendering template
+[2026-05-19 14:10:43,131] DEBUG in app: Starting home route
+[2026-05-19 14:10:43,131] DEBUG in app: Current user: None
+[2026-05-19 14:10:43,131] DEBUG in app: Executing most picked hotels query
+[2026-05-19 14:10:43,137] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 14:10:43,137] DEBUG in app: Executing list room hotels query
+[2026-05-19 14:10:43,141] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 14:10:43,141] DEBUG in app: Rendering template
+[2026-05-19 14:23:18,665] DEBUG in app: Starting home route
+[2026-05-19 14:23:18,665] DEBUG in app: Current user: None
+[2026-05-19 14:23:18,665] DEBUG in app: Executing most picked hotels query
+[2026-05-19 14:23:18,669] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 14:23:18,669] DEBUG in app: Executing list room hotels query
+[2026-05-19 14:23:18,673] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 14:23:18,673] DEBUG in app: Rendering template
+[2026-05-19 14:28:09,133] DEBUG in app: User before login: 38
+[2026-05-19 14:28:09,133] DEBUG in app: Login user successfully, user_id=38
+[2026-05-19 14:28:10,151] DEBUG in app: Starting home route
+[2026-05-19 14:28:10,159] DEBUG in app: Current user: <models.User object at 0x10cacec10>
+[2026-05-19 14:28:10,159] DEBUG in app: Executing most picked hotels query
+[2026-05-19 14:28:10,163] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 14:28:10,163] DEBUG in app: Executing list room hotels query
+[2026-05-19 14:28:10,169] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 14:28:10,170] DEBUG in app: Rendering template
+[2026-05-19 16:01:08,691] DEBUG in app: Starting home route
+[2026-05-19 16:01:08,692] DEBUG in app: Current user: <models.User object at 0x10bd3d2b0>
+[2026-05-19 16:01:08,692] DEBUG in app: Executing most picked hotels query
+[2026-05-19 16:01:08,694] DEBUG in app: Processed 5 most picked hotels
+[2026-05-19 16:01:08,694] DEBUG in app: Executing list room hotels query
+[2026-05-19 16:01:08,696] DEBUG in app: Processed 8 list room hotels
+[2026-05-19 16:01:08,696] DEBUG in app: Rendering template
+[2026-05-19 16:01:19,990] ERROR in app: [AI CHAT] Error: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'The provided API key has an IP address restriction. The originating IP address of the call (42.116.6.153) violates this restriction.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_IP_ADDRESS_BLOCKED', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com', 'callerIp': '42.116.6.153', 'consumer': 'projects/799844560317'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'The provided API key has an IP address restriction. The originating IP address of the call (42.116.6.153) violates this restriction.'}]}}
+[2026-05-20 16:53:50,391] DEBUG in app: Starting home route
+[2026-05-20 16:53:50,394] DEBUG in app: Current user: <models.User object at 0x10b2812b0>
+[2026-05-20 16:53:50,394] DEBUG in app: Executing most picked hotels query
+[2026-05-20 16:53:50,397] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 16:53:50,397] DEBUG in app: Executing list room hotels query
+[2026-05-20 16:53:50,400] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 16:53:50,404] DEBUG in app: Rendering template
+[2026-05-20 17:02:57,301] DEBUG in app: Starting home route
+[2026-05-20 17:02:57,303] DEBUG in app: Current user: <models.User object at 0x10b568ef0>
+[2026-05-20 17:02:57,303] DEBUG in app: Executing most picked hotels query
+[2026-05-20 17:02:57,306] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 17:02:57,306] DEBUG in app: Executing list room hotels query
+[2026-05-20 17:02:57,309] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 17:02:57,309] DEBUG in app: Rendering template
+[2026-05-20 17:04:31,028] DEBUG in app: Starting home route
+[2026-05-20 17:04:31,030] DEBUG in app: Current user: <models.User object at 0x10b54a250>
+[2026-05-20 17:04:31,030] DEBUG in app: Executing most picked hotels query
+[2026-05-20 17:04:31,033] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 17:04:31,033] DEBUG in app: Executing list room hotels query
+[2026-05-20 17:04:31,036] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 17:04:31,036] DEBUG in app: Rendering template
+[2026-05-20 17:33:21,551] DEBUG in app: Starting home route
+[2026-05-20 17:33:21,553] DEBUG in app: Current user: <models.User object at 0x17f424b90>
+[2026-05-20 17:33:21,553] DEBUG in app: Executing most picked hotels query
+[2026-05-20 17:33:21,556] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 17:33:21,556] DEBUG in app: Executing list room hotels query
+[2026-05-20 17:33:21,559] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 17:33:21,559] DEBUG in app: Rendering template
+[2026-05-20 21:30:41,618] ERROR in app: [AI CHAT] Error: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'The provided API key has an IP address restriction. The originating IP address of the call (14.232.107.48) violates this restriction.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_IP_ADDRESS_BLOCKED', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com', 'callerIp': '14.232.107.48', 'consumer': 'projects/799844560317'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'The provided API key has an IP address restriction. The originating IP address of the call (14.232.107.48) violates this restriction.'}]}}
+[2026-05-20 21:40:45,881] DEBUG in app: Starting home route
+[2026-05-20 21:40:45,882] DEBUG in app: Current user: None
+[2026-05-20 21:40:45,882] DEBUG in app: Executing most picked hotels query
+[2026-05-20 21:40:45,886] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 21:40:45,886] DEBUG in app: Executing list room hotels query
+[2026-05-20 21:40:45,890] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 21:40:45,891] DEBUG in app: Rendering template
+[2026-05-20 21:40:50,519] DEBUG in app: User before login: 37
+[2026-05-20 21:40:50,520] DEBUG in app: Login user successfully, user_id=37
+[2026-05-20 21:40:51,539] DEBUG in app: Starting home route
+[2026-05-20 21:40:51,541] DEBUG in app: Current user: <models.User object at 0x17f3e6cb0>
+[2026-05-20 21:40:51,541] DEBUG in app: Executing most picked hotels query
+[2026-05-20 21:40:51,546] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 21:40:51,546] DEBUG in app: Executing list room hotels query
+[2026-05-20 21:40:51,549] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 21:40:51,549] DEBUG in app: Rendering template
+[2026-05-20 21:40:53,889] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-20 21:40:53,902] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-20 21:41:04,841] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-20 22:07:21,121] DEBUG in app: Starting home route
+[2026-05-20 22:07:21,121] DEBUG in app: Current user: None
+[2026-05-20 22:07:21,122] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:07:21,125] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:07:21,126] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:07:21,129] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:07:21,129] DEBUG in app: Rendering template
+[2026-05-20 22:12:12,013] DEBUG in app: User before login: 37
+[2026-05-20 22:12:12,014] DEBUG in app: Login user successfully, user_id=37
+[2026-05-20 22:12:13,032] DEBUG in app: Starting home route
+[2026-05-20 22:12:13,040] DEBUG in app: Current user: <models.User object at 0x10a309810>
+[2026-05-20 22:12:13,040] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:12:13,043] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:12:13,044] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:12:13,046] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:12:13,046] DEBUG in app: Rendering template
+[2026-05-20 22:12:14,767] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-20 22:12:14,771] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-20 22:18:57,222] DEBUG in app: Starting home route
+[2026-05-20 22:18:57,223] DEBUG in app: Current user: None
+[2026-05-20 22:18:57,223] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:18:57,226] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:18:57,227] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:18:57,230] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:18:57,230] DEBUG in app: Rendering template
+[2026-05-20 22:19:24,476] DEBUG in app: User before login: 38
+[2026-05-20 22:19:24,476] DEBUG in app: Login user successfully, user_id=38
+[2026-05-20 22:19:25,486] DEBUG in app: Starting home route
+[2026-05-20 22:19:25,487] DEBUG in app: Current user: <models.User object at 0x10a3d5e60>
+[2026-05-20 22:19:25,487] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:19:25,490] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:19:25,490] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:19:25,495] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:19:25,495] DEBUG in app: Rendering template
+[2026-05-20 22:21:13,827] DEBUG in app: Current user in /api/user/info: user_id=38, is_authenticated=True
+[2026-05-20 22:21:13,838] DEBUG in app: Current user in /api/user/info: user_id=38, is_authenticated=True
+[2026-05-20 22:22:03,648] DEBUG in app: Starting home route
+[2026-05-20 22:22:03,648] DEBUG in app: Current user: None
+[2026-05-20 22:22:03,648] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:22:03,651] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:22:03,652] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:22:03,654] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:22:03,654] DEBUG in app: Rendering template
+[2026-05-20 22:22:07,715] DEBUG in app: User before login: 37
+[2026-05-20 22:22:07,715] DEBUG in app: Login user successfully, user_id=37
+[2026-05-20 22:22:08,727] DEBUG in app: Starting home route
+[2026-05-20 22:22:08,728] DEBUG in app: Current user: <models.User object at 0x10a39a8f0>
+[2026-05-20 22:22:08,728] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:22:08,733] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:22:08,734] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:22:08,740] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:22:08,740] DEBUG in app: Rendering template
+[2026-05-20 22:22:14,168] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-20 22:22:14,174] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-20 22:25:01,356] DEBUG in app: Starting home route
+[2026-05-20 22:25:01,357] DEBUG in app: Current user: None
+[2026-05-20 22:25:01,357] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:25:01,360] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:25:01,360] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:25:01,364] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:25:01,364] DEBUG in app: Rendering template
+[2026-05-20 22:25:06,517] DEBUG in app: User before login: 38
+[2026-05-20 22:25:06,517] DEBUG in app: Login user successfully, user_id=38
+[2026-05-20 22:25:07,537] DEBUG in app: Starting home route
+[2026-05-20 22:25:07,539] DEBUG in app: Current user: <models.User object at 0x10a486530>
+[2026-05-20 22:25:07,539] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:25:07,542] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:25:07,542] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:25:07,546] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:25:07,546] DEBUG in app: Rendering template
+[2026-05-20 22:36:37,670] DEBUG in app: Starting home route
+[2026-05-20 22:36:37,673] DEBUG in app: Current user: <models.User object at 0x10a4a3250>
+[2026-05-20 22:36:37,673] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:36:37,676] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:36:37,676] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:36:37,678] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:36:37,679] DEBUG in app: Rendering template
+[2026-05-20 22:36:39,127] DEBUG in app: Starting home route
+[2026-05-20 22:36:39,127] DEBUG in app: Current user: None
+[2026-05-20 22:36:39,127] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:36:39,130] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:36:39,130] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:36:39,133] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:36:39,134] DEBUG in app: Rendering template
+[2026-05-20 22:36:42,864] DEBUG in app: User before login: 37
+[2026-05-20 22:36:42,864] DEBUG in app: Login user successfully, user_id=37
+[2026-05-20 22:36:43,883] DEBUG in app: Starting home route
+[2026-05-20 22:36:43,884] DEBUG in app: Current user: <models.User object at 0x10a4847d0>
+[2026-05-20 22:36:43,884] DEBUG in app: Executing most picked hotels query
+[2026-05-20 22:36:43,888] DEBUG in app: Processed 5 most picked hotels
+[2026-05-20 22:36:43,888] DEBUG in app: Executing list room hotels query
+[2026-05-20 22:36:43,894] DEBUG in app: Processed 8 list room hotels
+[2026-05-20 22:36:43,894] DEBUG in app: Rendering template
+[2026-05-20 22:36:45,216] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-20 22:36:45,224] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-21 13:27:12,086] DEBUG in app: Starting home route
+[2026-05-21 13:27:12,087] DEBUG in app: Current user: <models.User object at 0x10a4a3250>
+[2026-05-21 13:27:12,087] DEBUG in app: Executing most picked hotels query
+[2026-05-21 13:27:12,090] DEBUG in app: Processed 5 most picked hotels
+[2026-05-21 13:27:12,090] DEBUG in app: Executing list room hotels query
+[2026-05-21 13:27:12,092] DEBUG in app: Processed 8 list room hotels
+[2026-05-21 13:27:12,092] DEBUG in app: Rendering template
+[2026-05-21 13:27:23,220] ERROR in app: [AI CHAT] Error: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'The provided API key has an IP address restriction. The originating IP address of the call (42.116.6.153) violates this restriction.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_IP_ADDRESS_BLOCKED', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com', 'callerIp': '42.116.6.153', 'consumer': 'projects/799844560317'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'The provided API key has an IP address restriction. The originating IP address of the call (42.116.6.153) violates this restriction.'}]}}
+[2026-05-21 13:27:42,394] DEBUG in app: Starting home route
+[2026-05-21 13:27:42,395] DEBUG in app: Current user: None
+[2026-05-21 13:27:42,395] DEBUG in app: Executing most picked hotels query
+[2026-05-21 13:27:42,398] DEBUG in app: Processed 5 most picked hotels
+[2026-05-21 13:27:42,398] DEBUG in app: Executing list room hotels query
+[2026-05-21 13:27:42,402] DEBUG in app: Processed 8 list room hotels
+[2026-05-21 13:27:42,402] DEBUG in app: Rendering template
+[2026-05-21 13:27:46,109] DEBUG in app: User before login: 38
+[2026-05-21 13:27:46,109] DEBUG in app: Login user successfully, user_id=38
+[2026-05-21 13:27:47,127] DEBUG in app: Starting home route
+[2026-05-21 13:27:47,129] DEBUG in app: Current user: <models.User object at 0x10a5718b0>
+[2026-05-21 13:27:47,130] DEBUG in app: Executing most picked hotels query
+[2026-05-21 13:27:47,134] DEBUG in app: Processed 5 most picked hotels
+[2026-05-21 13:27:47,135] DEBUG in app: Executing list room hotels query
+[2026-05-21 13:27:47,138] DEBUG in app: Processed 8 list room hotels
+[2026-05-21 13:27:47,138] DEBUG in app: Rendering template
+[2026-05-21 13:28:40,853] DEBUG in app: Current user in /api/user/info: user_id=38, is_authenticated=True
+[2026-05-21 13:28:40,859] DEBUG in app: Current user in /api/user/info: user_id=38, is_authenticated=True
+[2026-05-21 13:28:56,227] DEBUG in app: Starting home route
+[2026-05-21 13:28:56,227] DEBUG in app: Current user: None
+[2026-05-21 13:28:56,227] DEBUG in app: Executing most picked hotels query
+[2026-05-21 13:28:56,230] DEBUG in app: Processed 5 most picked hotels
+[2026-05-21 13:28:56,230] DEBUG in app: Executing list room hotels query
+[2026-05-21 13:28:56,233] DEBUG in app: Processed 8 list room hotels
+[2026-05-21 13:28:56,234] DEBUG in app: Rendering template
+[2026-05-21 13:28:59,853] DEBUG in app: User before login: 37
+[2026-05-21 13:28:59,854] DEBUG in app: Login user successfully, user_id=37
+[2026-05-21 13:29:00,873] DEBUG in app: Starting home route
+[2026-05-21 13:29:00,874] DEBUG in app: Current user: <models.User object at 0x10a55f9d0>
+[2026-05-21 13:29:00,875] DEBUG in app: Executing most picked hotels query
+[2026-05-21 13:29:00,878] DEBUG in app: Processed 5 most picked hotels
+[2026-05-21 13:29:00,878] DEBUG in app: Executing list room hotels query
+[2026-05-21 13:29:00,882] DEBUG in app: Processed 8 list room hotels
+[2026-05-21 13:29:00,883] DEBUG in app: Rendering template
+[2026-05-21 13:29:04,417] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-21 13:29:04,423] DEBUG in app: Current user in /api/user/info: user_id=37, is_authenticated=True
+[2026-05-21 13:29:47,125] ERROR in app: [AI CHAT] Error: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'The provided API key has an IP address restriction. The originating IP address of the call (42.116.6.153) violates this restriction.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_IP_ADDRESS_BLOCKED', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com', 'callerIp': '42.116.6.153', 'consumer': 'projects/799844560317'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'The provided API key has an IP address restriction. The originating IP address of the call (42.116.6.153) violates this restriction.'}]}}

@@ -1,0 +1,86 @@
+"""
+Nearby Node: Tìm khách sạn gần nhất dựa trên vị trí GPS của người dùng.
+"""
+import os
+import re
+import json
+from google import genai
+from langchain_core.messages import AIMessage
+from ai_agent.state import BookingState
+from ai_agent.tools.location_tools import find_nearest_hotels
+
+
+def nearby_node(state: BookingState) -> dict:
+    """
+    Node xử lý tìm khách sạn gần nhất.
+    Bước 1: Trích xuất tọa độ từ tin nhắn (hoặc hỏi lại nếu chưa có).
+    Bước 2: Gọi tool tìm 3 khách sạn gần nhất.
+    """
+    api_key = os.getenv("GEMINI_API_KEY")
+    client = genai.Client(api_key=api_key)
+
+    last_message = state["messages"][-1].content
+    user_lat = state.get("user_lat")
+    user_lng = state.get("user_lng")
+
+    # Thử trích xuất tọa độ từ tin nhắn bằng LLM
+    if not user_lat or not user_lng:
+        extract_prompt = f"""Tin nhắn người dùng: "{last_message}"
+
+Hãy trích xuất tọa độ GPS (latitude, longitude) từ tin nhắn trên.
+Trả về JSON thuần túy: {{"lat": <số>, "lng": <số>}}
+Nếu không tìm thấy tọa độ, trả về: {{"lat": null, "lng": null}}
+Không giải thích, chỉ trả JSON."""
+
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=extract_prompt
+        )
+
+        text = response.text.strip()
+        text = re.sub(r'^```json\s*', '', text)
+        text = re.sub(r'\s*```$', '', text)
+
+        try:
+            coords = json.loads(text)
+            user_lat = coords.get("lat")
+            user_lng = coords.get("lng")
+        except json.JSONDecodeError:
+            pass
+
+    # Nếu vẫn chưa có tọa độ → hỏi lại
+    if not user_lat or not user_lng:
+        msg = (
+            "📍 Để tìm khách sạn gần bạn nhất, tôi cần biết vị trí của bạn.\n\n"
+            "Bạn có thể cung cấp tọa độ theo một trong các cách sau:\n"
+            "1️⃣ Nhập tọa độ: `21.0285, 105.8542` (vĩ độ, kinh độ)\n"
+            "2️⃣ Cho biết tên thành phố/khu vực bạn đang ở\n\n"
+            "_💡 Mẹo: Mở Google Maps → nhấn giữ vào vị trí → copy tọa độ._"
+        )
+        return {"messages": [AIMessage(content=msg)]}
+
+    # Tìm 3 khách sạn gần nhất
+    results = find_nearest_hotels(user_lat, user_lng, top_n=3)
+
+    if results and "error" in results[0]:
+        return {"messages": [AIMessage(content=f"❌ {results[0]['error']}")]}
+
+    # Format kết quả
+    msg = f"📍 **3 khách sạn gần bạn nhất** (vị trí: {user_lat}, {user_lng}):\n\n"
+    for i, h in enumerate(results, 1):
+        price_text = f"{h['min_price']:,} VND/đêm" if h['min_price'] else "Liên hệ"
+        rating_text = f"⭐ {h['rating']}" if h['rating'] else "Chưa đánh giá"
+        msg += (
+            f"**{i}. {h['hotel_name']}** — 📏 {h['distance_km']} km\n"
+            f"   📍 {h['address']}\n"
+            f"   📞 {h['phone']} | {rating_text}\n"
+            f"   💰 Từ {price_text}\n\n"
+        )
+
+    msg += "Bạn muốn đặt phòng tại khách sạn nào? Tôi sẽ giúp bạn ngay! 🏨"
+
+    return {
+        "messages": [AIMessage(content=msg)],
+        "user_lat": user_lat,
+        "user_lng": user_lng,
+    }
